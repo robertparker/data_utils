@@ -36,3 +36,71 @@ Uses the [imagekitio](https://github.com/imagekit-developer/imagekit-python) pac
 ```bash
 $ source ~/.imagekit_env && python image/image.py
 ```
+
+## jq
+
+Given a json response that looks like: 
+```bash
+$ python image/image.py | jq  | head -15
+{
+  "error": null,
+  "response": [
+    {
+      "type": "file",
+      "name": "default-image.jpg",
+      "fileId": "5e792d7b855bcd575b10cdac",
+      "tags": null,
+      "customCoordinates": null,
+      "isPrivateFile": false,
+      "url": "https://ik.imagekit.io/69mp7bhac/default-image.jpg",
+      "thumbnail": "https://ik.imagekit.io/69mp7bhac/tr:n-media_library_thumbnail/default-image.jpg",
+      "fileType": "image",
+      "filePath": "/default-image.jpg"
+    },
+```
+
+### get all values for one field within an array of objects
+
+```bash
+$ python image/image.py | jq '[ .response[].url ]' | head
+[
+  "https://ik.imagekit.io/69mp7bhac/default-image.jpg",
+  "https://ik.imagekit.io/69mp7bhac/photo-1574144113084-b6f450cc5e0c_Y5IvSc6b4.jpeg",
+  "https://ik.imagekit.io/69mp7bhac/photo-1574144113084-b6f450cc5e0c_MpYf03m27.webp",
+  "https://ik.imagekit.io/69mp7bhac/headshot3_zQSlTs3bb.webp",
+  "https://ik.imagekit.io/69mp7bhac/headshot2_oR1Vn5amZ.webp",
+  "https://ik.imagekit.io/69mp7bhac/headshot0_6ETzsKqtE.webp",
+  "https://ik.imagekit.io/69mp7bhac/headshot5_SYCuqgLtN.webp",
+  "https://ik.imagekit.io/69mp7bhac/headshot4_amj2Uhtdn.webp",
+  "https://ik.imagekit.io/69mp7bhac/headshot6_1cVamjitn.webp",
+```
+
+### get multiple fields from within an array of objects 
+
+to grab the raw values...
+```bash
+$ python image/image.py | jq '.response[] | [ .url, .name] ' | head
+[
+  "https://ik.imagekit.io/69mp7bhac/default-image.jpg",
+  "default-image.jpg"
+]
+[
+  "https://ik.imagekit.io/69mp7bhac/photo-1574144113084-b6f450cc5e0c_Y5IvSc6b4.jpeg",
+  "photo-1574144113084-b6f450cc5e0c_Y5IvSc6b4.jpeg"
+]
+```
+
+to structure as a list of dicts... 
+
+```bash
+$ python image/image.py | jq '[ .response[] | {url: .url, name: .name} ]' | head
+{
+  "url": "https://ik.imagekit.io/69mp7bhac/default-image.jpg",
+  "name": "default-image.jpg"
+}
+{
+  "url": "https://ik.imagekit.io/69mp7bhac/photo-1574144113084-b6f450cc5e0c_Y5IvSc6b4.jpeg",
+  "name": "photo-1574144113084-b6f450cc5e0c_Y5IvSc6b4.jpeg"
+}
+```
+the entire jq command is wrapped in a list, like `jq | '[  ]'`.
