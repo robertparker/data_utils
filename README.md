@@ -13,6 +13,7 @@ Boilerplate code and wiki steps for common data operations and command line work
 
 ```bash
 $ hub create
+$ git push -u origin master
 ```
 
 ## Image Processing
@@ -32,7 +33,7 @@ for url in urls:
 ```
 
 ### get imagekit urls
-Uses the [imagekitio](https://github.com/imagekit-developer/imagekit-python) package. Requires imagekit API keys written to `~/.imagekit_env`. 
+Uses the [imagekitio](https://github.com/imagekit-developer/imagekit-python) package. Requires imagekit API keys are sourced from environmental variables in `~/.imagekit_env`. 
 
 ```bash
 $ source ~/.imagekit_env && python image/image.py
