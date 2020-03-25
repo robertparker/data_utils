@@ -31,7 +31,8 @@ for url in urls:
 ```
 
 ### get imagekit urls
+Uses the [imagekitio](https://github.com/imagekit-developer/imagekit-python) package. Requires imagekit API keys written to `~/.imagekit_env`. 
 
 ```bash
-$ python image/image.py
+$ source ~/.imagekit_env && python image/image.py
 ```
