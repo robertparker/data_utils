@@ -2,13 +2,24 @@ Boilerplate code and wiki steps for common data operations and command line work
 
 ## Table of Contents
 
-- [GitHub](#github)
+- [Debugging](#Debugging)
+- [Dev Setup](#Dev-Setup)
 - [Image Processing](#image-processing)
-- [jq](#jq)
+- [JSON parsing](#JSON-Parsing)
 
-## GitHub
+## Debugging
 
-### create and push a new repo from the command line
+### [jupyter] auto-reload a module in ipython or a notebook
+
+```ipython
+%load_ext autoreload
+%autoreload 1
+%aimport <module>
+```
+
+## Dev Setup
+
+### [github] create and push a new repo from the command line
 [`hub`](https://hub.github.com/) is an easy way for doing this (`brew install hub`). Go here for  [the long way](https://help.github.com/en/github/importing-your-projects-to-github/adding-an-existing-project-to-github-using-the-command-line).
 
 ```bash
@@ -39,7 +50,7 @@ Uses the [imagekitio](https://github.com/imagekit-developer/imagekit-python) pac
 $ source ~/.imagekit_env && python image/image.py
 ```
 
-## jq
+## JSON Parsing
 
 Given a json response that looks like: 
 ```bash
@@ -61,7 +72,7 @@ $ python image/image.py | jq  | head -15
     },
 ```
 
-### get all values for one field within an array of objects
+### [jq] get all values for one field within an array of objects
 
 ```bash
 $ python image/image.py | jq '[ .response[].url ]' | head
@@ -77,7 +88,7 @@ $ python image/image.py | jq '[ .response[].url ]' | head
   "https://ik.imagekit.io/69mp7bhac/headshot6_1cVamjitn.webp",
 ```
 
-### get multiple fields from within an array of objects 
+### [jq] get multiple fields from within an array of objects 
 
 to grab the raw values...
 ```bash
