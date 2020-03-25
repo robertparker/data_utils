@@ -4,6 +4,7 @@ Boilerplate code and wiki steps for common data operations and command line work
 
 - [GitHub](#github)
 - [Image Processing](#image-processing)
+- [jq](#jq)
 
 ## GitHub
 
