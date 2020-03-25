@@ -9,7 +9,7 @@ Boilerplate code and wiki steps for common data operations and command line work
 
 ## Debugging
 
-### [jupyter] auto-reload a module in ipython or a notebook
+### `jupyter` auto-reload a module in ipython or a notebook
 
 ```ipython
 %load_ext autoreload
@@ -19,7 +19,7 @@ Boilerplate code and wiki steps for common data operations and command line work
 
 ## Dev Setup
 
-### [github] create and push a new repo from the command line
+### `github` create and push a new repo from the command line
 [`hub`](https://hub.github.com/) is an easy way for doing this (`brew install hub`). Go here for  [the long way](https://help.github.com/en/github/importing-your-projects-to-github/adding-an-existing-project-to-github-using-the-command-line).
 
 ```bash
@@ -72,7 +72,7 @@ $ python image/image.py | jq  | head -15
     },
 ```
 
-### [jq] get all values for one field within an array of objects
+### `jq` get all values for one field within an array of objects
 
 ```bash
 $ python image/image.py | jq '[ .response[].url ]' | head
@@ -88,7 +88,7 @@ $ python image/image.py | jq '[ .response[].url ]' | head
   "https://ik.imagekit.io/69mp7bhac/headshot6_1cVamjitn.webp",
 ```
 
-### [jq] get multiple fields from within an array of objects 
+### `jq` get multiple fields from within an array of objects 
 
 to grab the raw values...
 ```bash
