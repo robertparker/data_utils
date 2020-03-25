@@ -11,6 +11,7 @@ def get_image_from_url(url):
 def get_imagekit_urls(limit=100):
     from imagekitio import ImageKit
     import json
+    import os
 
     imagekit = ImageKit(
         private_key=os.environ["IMAGEKIT_PRIVATE_KEY"],
