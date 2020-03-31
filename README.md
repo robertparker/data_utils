@@ -1,4 +1,4 @@
-Boilerplate code and wiki steps for common data operations and command line workflows.
+Boilerplate code and wiki for common data operations.
 
 ## Table of Contents
 
