@@ -6,6 +6,7 @@ Boilerplate code and wiki for common data operations.
 - [Dev Setup](#Dev-Setup)
 - [Image Processing](#image-processing)
 - [JSON parsing](#JSON-Parsing)
+- [Stats](#Stats)
 
 ## Debugging
 
@@ -72,6 +73,9 @@ $ python image/image.py | jq  | head -15
     },
 ```
 
+Resources: 
+* [jq tutorial](https://stedolan.github.io/jq/tutorial/)
+
 ### `jq` get all values for one field within an array of objects
 
 ```bash
@@ -107,13 +111,43 @@ to structure as a list of dicts...
 
 ```bash
 $ python image/image.py | jq '[ .response[] | {url: .url, name: .name} ]' | head
-{
+[{
   "url": "https://ik.imagekit.io/69mp7bhac/default-image.jpg",
   "name": "default-image.jpg"
-}
+},
 {
   "url": "https://ik.imagekit.io/69mp7bhac/photo-1574144113084-b6f450cc5e0c_Y5IvSc6b4.jpeg",
   "name": "photo-1574144113084-b6f450cc5e0c_Y5IvSc6b4.jpeg"
-}
+}]
 ```
 the entire jq command is wrapped in a list, like `jq | '[  ]'`.
+
+## Stats 
+
+Resources: 
+* [Intro to power analysis in python](https://towardsdatascience.com/introduction-to-power-analysis-in-python-e7b748dfa26)
+* [calculating sample size](https://scientificallysound.org/2017/07/20/python-calculating-sample-size-for-a-2-independent-sample-t-test/)
+* [Typical analysis procedure](http://work.thaslwanter.at/Stats/html/statsAnalysis.html)
+
+### `statsmodels` calculate power for a given sample size and alpha
+
+[documentation](https://www.statsmodels.org/stable/generated/statsmodels.stats.power.tt_ind_solve_power.html). 
+
+Helpful when you have unevenly sized samples. Let's assume this is a one-sided t-test (i.e. alternative is not `two-sided`). 
+
+```python
+from statsmodels.stats.power import tt_ind_solve_power
+
+tt_ind_solve_power(effect_size=0.03, nobs1=60000, alpha=0.05, ratio=0.08, alternative='larger')
+0.51
+```
+
+### `statsmodels` calculate sample size for a power and alpha
+
+```python
+from statsmodels.stats.power import TTestIndPower
+
+power_analysis = TTestIndPower()
+power_analysis.solve_power(alpha=0.05, power=0.8, effect_size=0.03)
+17442.872915839584
+```
