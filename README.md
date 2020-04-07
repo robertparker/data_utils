@@ -127,7 +127,7 @@ the entire jq command is wrapped in a list, like `jq | '[  ]'`.
 ```bash
 $ python image/image.py | jq '[. response[] | keys'
 [
-"type",
+ "type",
  "name",
  "fileId",
  "tags",
