@@ -122,6 +122,24 @@ $ python image/image.py | jq '[ .response[] | {url: .url, name: .name} ]' | head
 ```
 the entire jq command is wrapped in a list, like `jq | '[  ]'`.
 
+### `jq` get all keys from a dict
+
+```bash
+$ python image/image.py | jq '[. response[] | keys'
+[
+"type",
+ "name",
+ "fileId",
+ "tags",
+ "customCoordinates",
+ "isPrivateFile",
+ "url",
+ "thumbnail",
+ "fileType",
+ "filePath"
+]
+```
+
 ## Stats 
 
 Resources: 
