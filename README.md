@@ -28,6 +28,12 @@ $ hub create
 $ git push -u origin master
 ```
 
+### `virtualenv` create a virtualenv with a python version
+
+```bash
+$ virtalenv venv --python=python3.7
+```
+
 ## Image Processing
 
 Getting PIL to work in ipython required running `ipython -m pip install Pillow` ([source](https://github.com/python-pillow/Pillow/issues/4288`))
@@ -121,6 +127,24 @@ $ python image/image.py | jq '[ .response[] | {url: .url, name: .name} ]' | head
 }]
 ```
 the entire jq command is wrapped in a list, like `jq | '[  ]'`.
+
+### `jq` get all keys from a dict
+
+```bash
+$ python image/image.py | jq '[. response[] | keys'
+[
+ "type",
+ "name",
+ "fileId",
+ "tags",
+ "customCoordinates",
+ "isPrivateFile",
+ "url",
+ "thumbnail",
+ "fileType",
+ "filePath"
+]
+```
 
 ## Stats 
 
