@@ -28,6 +28,12 @@ $ hub create
 $ git push -u origin master
 ```
 
+### `virtualenv` create a virtualenv with a python version
+
+```bash
+$ virtalenv venv --python=python3.7
+```
+
 ## Image Processing
 
 Getting PIL to work in ipython required running `ipython -m pip install Pillow` ([source](https://github.com/python-pillow/Pillow/issues/4288`))
