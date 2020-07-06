@@ -1,4 +1,4 @@
-.
+-e .
 airtable==0.3.1
 certifi==2020.6.20
 chardet==3.0.4

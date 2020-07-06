@@ -3,7 +3,7 @@ from distutils.core import setup
 
 with open('requirements.txt') as fh:
     lines = (x.split('#')[0].strip() for x in fh)
-    requirements = [x for x in lines if not x == "."]
+    requirements = [x for x in lines if not x == "-e ."]
 
 setup(
     name='data_utils',
