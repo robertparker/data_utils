@@ -31,8 +31,9 @@ def test_env_args_are_passed_to_airtable_con(monkeypatch):
 
     from data_utils.airtable_utils import conn
 
+    # assert env vars are implicitly used
     con = conn()
-    assert con.url == "https://api.airtable.com/v0/base1"
+    assert con.base_url == "https://api.airtable.com/v0/base1"
     assert con.headers == {"Authorization": "Bearer key1"}
 
     # assert arguments passed are prioritized over env
