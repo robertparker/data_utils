@@ -5,9 +5,10 @@ import pandas as pd
 
 
 def conn(
-    base_key: Optional[str] = os.environ["AIRTABLE_BASE_KEY"],
-    api_key: Optional[str] = os.environ["AIRTABLE_API_KEY"],
+    base_key: Optional[str] = None, api_key: Optional[str] = None,
 ) -> airtable.Airtable:
+    base_key = base_key or os.environ.get("AIRTABLE_BASE_KEY")
+    api_key = api_key or os.environ.get("AIRTABLE_API_KEY")
     return airtable.Airtable(base_key, api_key)
 
 
@@ -25,11 +26,16 @@ def df_from_airtable(table_name: str, con: Optional[airtable.Airtable]) -> pd.Da
 
 
 # flake8: noqa E501
-def df_to_airtable(df: pd.DataFrame, table_name: str, unique_keys: List[str]) -> None:
+def df_to_airtable(
+    df: pd.DataFrame,
+    table_name: str,
+    unique_keys: List[str],
+    con: Optional[airtable.Airtable],
+) -> None:
     """idempotent insert of csv rows to airtable"""
 
-    at = conn()
-    existing_df = df_from_airtable(table_name, con=conn)
+    at = con or conn()
+    existing_df = df_from_airtable(table_name, con=at)
 
     # TODO: assert column names match
     #       there appears to be an airtable.py bug
