@@ -11,6 +11,6 @@ setup(
     author="Rohit Parulkar",
     author_email="rohit.parulkar@gmail.com",
     url="https://example.com",
-    packages=["image"],
+    packages=["data_utils"],
     install_requires=requirements,
 )
