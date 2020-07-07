@@ -4,23 +4,30 @@ from airtable import airtable
 import pandas as pd
 
 
-def load_df_to_airtable(
-    df: pd.DataFrame,
-    table_name: str,
-    unique_keys: List[str],
+def conn(
     base_key: Optional[str] = os.environ["AIRTABLE_BASE_KEY"],
     api_key: Optional[str] = os.environ["AIRTABLE_API_KEY"],
-) -> None:
-    """idempotent insert of csv rows to airtable"""
+) -> airtable.Airtable:
+    return airtable.Airtable(base_key, api_key)
 
-    # get all airtable records
-    at = airtable.Airtable(base_key, api_key)
-    existing = []
+
+def df_from_airtable(table_name: str,) -> pd.DataFrame:
+    """receives a dataframe from airtable"""
+    at = conn()
+    results = []
     for rec in at.iterate(table_name):
         od = rec["fields"]
         od.update({"id": rec["id"]})
-        existing.append(od)
-    existing_df = pd.DataFrame(existing)
+        results.append(od)
+    df = pd.DataFrame(results)
+    return df
+
+
+# flake8: noqa E501
+def df_to_airtable(df: pd.DataFrame, table_name: str, unique_keys: List[str]) -> None:
+    """idempotent insert of csv rows to airtable"""
+
+    existing_df = df_from_airtable(table_name)
 
     # TODO: assert column names match
     #       there appears to be an airtable.py bug
@@ -33,6 +40,7 @@ def load_df_to_airtable(
     del insert_df["_merge"]
 
     print(f"inserting {len(insert_df)} rows into {table_name}.")
+    at = conn()
     insert_dict = insert_df.to_dict("records")
     for d in insert_dict:
         at.create(table_name, d)
