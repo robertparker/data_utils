@@ -1,16 +1,24 @@
--e .
 airtable==0.3.1
 appdirs==1.4.4
 appnope==0.1.0
 attrs==19.3.0
 backcall==0.2.0
+cachetools==4.2.1
 certifi==2020.6.20
 cfgv==3.1.0
 chardet==3.0.4
 coverage==5.2
+-e git+git@github.com:robertparker/data_utils.git@d236320c1fad757c4b46466694ea163266dfef45#egg=data_utils
 decorator==4.4.2
 distlib==0.3.1
 filelock==3.0.12
+google-api-core==1.25.1
+google-api-python-client==1.12.8
+google-auth==1.25.0
+google-auth-httplib2==0.0.4
+google-auth-oauthlib==0.4.2
+googleapis-common-protos==1.52.0
+httplib2==0.19.0
 identify==1.4.21
 idna==2.8
 imagekitio==2.2.4
@@ -23,6 +31,7 @@ mock==4.0.2
 more-itertools==8.4.0
 nodeenv==1.4.0
 numpy==1.19.0
+oauthlib==3.1.0
 packaging==20.4
 pandas==1.0.5
 parso==0.7.0
@@ -33,9 +42,13 @@ Pillow==7.2.0
 pluggy==0.13.1
 pre-commit==2.6.0
 prompt-toolkit==3.0.5
+protobuf==3.14.0
 ptyprocess==0.6.0
 py==1.9.0
+pyasn1==0.4.8
+pyasn1-modules==0.2.8
 Pygments==2.6.1
+pygsheets==2.0.5
 pyparsing==2.4.7
 pytest==5.4.3
 pytest-testdox==1.2.1
@@ -43,11 +56,14 @@ python-dateutil==2.8.1
 pytz==2020.1
 PyYAML==5.3.1
 requests==2.22.0
+requests-oauthlib==1.3.0
+rsa==4.7
 scipy==1.5.1
 six==1.15.0
 statsmodels==0.11.1
 toml==0.10.1
 traitlets==4.3.3
+uritemplate==3.0.1
 urllib3==1.25.9
 virtualenv==20.0.25
 wcwidth==0.2.5
